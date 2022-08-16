@@ -1,0 +1,7 @@
+1) git pull
+
+2) git add --all (if any files need added)
+
+3) git commit -m "*Message*"
+
+4) git push
