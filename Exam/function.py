@@ -86,9 +86,11 @@ def extract_UG(link):
     return main_text
 
 def clean_text(text):
+    text.split(' ')
     text = text.replace('[','').replace(']', '')
-    text = text.lower()
-    text = re.sub("(<li>)|(</li>)|</p>|<p>|\xa0|<ul>|</ul>|'|-| +|,| ,|</a>|<a>|<a|[.]|[:]", ' ', text)
+    text = text.str.lower()
+    text = re.sub("^\d+\s|\s\d+\s|\s\d+$", "", text)
+    text = re.sub("(<li>)|(</li>)|</p>|<p>|\xa0|<ul>|</ul>|'|-| +|,| ,|</a>|<a>|<a|[.]|[:]|\n", ' ', text)
     text = re.sub(" +", " ", text)
     return text
     
