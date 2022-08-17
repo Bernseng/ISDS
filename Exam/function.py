@@ -4,44 +4,6 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-
-def extract_jobindex(page, tag):
-
-    
-    headers = {'User-Agent':'kjp538@alumni.ku.dk'}
-
-    url = f"https://www.jobindex.dk/jobsoegning?page={page}&q={tag}"
-                    
-    r = requests.get(url, headers)
-        
-    soup = BeautifulSoup(r.content.decode("utf-8"), "html.parser")
-                    
-    divs = soup.find_all("div", class_="jobsearch-result")
-
-    job_list = []
-
-    for item in divs:
-        title = item.find_all("b")[0].text.strip()
-        #company = item.find_all("b")[1].text.strip()
-        #published_date = item.find("time").text.strip()
-        summary = item.find_all("p")[1].text.strip()
-        #job_location = item.find_all("p")[0].text.strip()
-        #job_url =  item.select_one('[data-click*="u="]:has(> b)')['href']
-                        
-        job = {
-        "job_title" : tag,
-        "title" : title, 
-        #"company" : company,
-        #"published_date" : published_date,
-        "summary" : summary,
-        #"job_location" : job_location,
-        #"job_url" : job_url
-        }
-
-        job_list.append(job)
-        
-    return job_list
-
 def fetching_occupation(uri):
 
     url = f'http://ec.europa.eu/esco/api/resource/occupation?uri={uri}&language=da'
@@ -207,19 +169,3 @@ def extract_aau(fag):
     soup = BeautifulSoup(r.content.decode("utf-8"), "html.parser")
     
     return soup
-
-def transform_aau(soup):
-
-    divs = soup.find_all("main", class_="Main_Main__2KIvG")
-
-    for item in divs:
-        text_aau = item.find_all()[0].text.strip()
-
-        aau_text = {
-            "text_aau" : text_aau, 
-        }
-        aau_list.append(aau_text)
-
-        text_aau = clean_text(text_aau)
-        
-    return text_aau
