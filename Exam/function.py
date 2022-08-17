@@ -17,7 +17,8 @@ def extract_jobindex(page, tag):
     soup = BeautifulSoup(r.content.decode("utf-8"), "html.parser")
                     
     divs = soup.find_all("div", class_="jobsearch-result")
-                    
+
+    job_list = []
 
     for item in divs:
         title = item.find_all("b")[0].text.strip()
@@ -27,7 +28,6 @@ def extract_jobindex(page, tag):
         #job_location = item.find_all("p")[0].text.strip()
         #job_url =  item.select_one('[data-click*="u="]:has(> b)')['href']
                         
-
         job = {
         "job_title" : tag,
         "title" : title, 
@@ -40,7 +40,7 @@ def extract_jobindex(page, tag):
 
         job_list.append(job)
         
-    return
+    return job_list
 
 def fetching_occupation(uri):
 
