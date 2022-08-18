@@ -88,9 +88,9 @@ def extract_UG(link):
 def clean_text(text):
     text.split(' ')
     text = text.replace('[','').replace(']', '')
-    text = text.str.lower()
+    text = text.lower()
     text = re.sub("^\d+\s|\s\d+\s|\s\d+$", "", text)
-    text = re.sub("(<li>)|(</li>)|</p>|<p>|\xa0|<ul>|</ul>|'|-| +|,| ,|</a>|<a>|<a|[.]|[:]|\n", ' ', text)
+    text = re.sub("(<li>)|(</li>)|</p>|<p>|\xa0|<ul>|</ul>|'|-| +|,| ,|</a>|<a>|<a|[.]|[:]|\n|[?]", ' ', text)
     text = re.sub(" +", " ", text)
     return text
     
@@ -171,3 +171,16 @@ def extract_aau(fag):
     soup = BeautifulSoup(r.content.decode("utf-8"), "html.parser")
     
     return soup
+
+def make_a_list(series):
+
+    new_list = []
+
+    list1 = series.to_list()
+
+    for item in list1:
+        new_list.append(clean_text(item))
+
+    new_final_df = pd.DataFrame(data=new_list)
+
+    return new_final_df
