@@ -260,3 +260,14 @@ vær
 være
 været
 øvrigt
+hr
+bringe
+ppr
+ønsker
+nye
+hverdag
+del','inden','søger', 
+'kan','egedal','oktober','kompetencer','li','ul','text','align','justify','br','p','div','strong',
+'style','href','både','ung','halsnæs','egen','daglig','hel','vigtig','relevant','velkommen','tidlig','første','enkelt','tæt','flest',
+'høj','ny','fast','mulig','lille','øvrig','mange','meget','central','voksen','stor','gammel','konkret','aktuel','ugenligt','gavn','formår',
+'god','vant','int','fig','centralt','evalueres','mittag','løbende','spise','nær','nemmere'
