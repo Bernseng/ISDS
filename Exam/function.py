@@ -29,11 +29,13 @@ def fetching_occupation(uri):
         }   
         joblist.append(job)
 
+        
+
         jobs = pd.DataFrame(data=joblist, columns=['job_title', 'essential_skill', 'optional_skill'])
 
         # jobs = jobs.set_index(['title'], append=True).swaplevel(0,1)
 
-    return jobs
+    return job
 
 def UG(page, tag):
     
