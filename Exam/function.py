@@ -44,7 +44,7 @@ def fetching_occupation(uri):
 
         # jobs = jobs.set_index(['title'], append=True).swaplevel(0,1)
 
-    return job
+    return jobs
 
 def UG(page, tag):
     
@@ -204,7 +204,7 @@ def generate_better_wordcloud(data, size):
                       background_color='white',
                       max_font_size=28,
                       mask=None,
-                      relative_scaling=0.8,
+                      relative_scaling=0.5,
                       stopwords=stop_word, #Setting StopWords equal to the updated
                       collocations=False).generate(data)
     plt.figure(figsize=size)
