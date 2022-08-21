@@ -3,6 +3,15 @@ import numpy as np
 import re
 import requests
 from bs4 import BeautifulSoup
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import nltk
+from nltk import FreqDist
+import seaborn as sns
+
+with open('stopord.txt', encoding='utf8') as f:
+    stopord = f.read().splitlines()
+stop_word = nltk.corpus.stopwords.words('danish') + stopord
 
 def fetching_occupation(uri):
 
@@ -187,3 +196,31 @@ def make_a_list(series):
     new_final_df = pd.DataFrame(data=new_list)
 
     return new_final_df
+
+def generate_better_wordcloud(data, size):
+    cloud = WordCloud(scale=3,
+                      max_words=100, #Maximum words in the WordCloud
+                      colormap='ocean', #Color of the WordCloud
+                      background_color='white',
+                      max_font_size=28,
+                      mask=None,
+                      relative_scaling=0.8,
+                      stopwords=stop_word, #Setting StopWords equal to the updated
+                      collocations=False).generate(data)
+    plt.figure(figsize=size)
+    plt.imshow(cloud)
+    plt.axis('off') #No axis 
+    plt.show()
+
+def frequency_plot(data):
+    plot = FreqDist(data).most_common(20)
+    all_fdist = pd.Series(dict(plot))
+    fig, ax = plt.subplots(figsize=(10,10))
+
+    all_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, ax=ax, color='cyan', ci=None)
+
+    plt.ylabel('Words', fontsize=14)
+    plt.xlabel('Count', fontsize=14)
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=12) #rotation=30
+    plt.show()
