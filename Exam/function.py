@@ -216,11 +216,9 @@ def frequency_plot(data):
     plot = FreqDist(data).most_common(20)
     all_fdist = pd.Series(dict(plot))
     fig, ax = plt.subplots(figsize=(10,10))
-
-    all_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, ax=ax, color='cyan', ci=None)
-
+    sns.barplot(x=all_fdist.values, y=all_fdist.index, ax=ax, color='navy', ci=None)
     plt.ylabel('Words', fontsize=14)
     plt.xlabel('Count', fontsize=14)
-    plt.xticks(fontsize=10)
-    plt.yticks(fontsize=12) #rotation=30
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=16) #rotation=30
     plt.show()
